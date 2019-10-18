@@ -1,0 +1,7 @@
+{
+  "appId": "com.axehigh.ionic.vue.sample",
+  "appName": "vueionic",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist"
+}
