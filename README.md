@@ -40,6 +40,9 @@ npx cap add ios
 ```
 npx cap ios open
 ```
+```
+npx cap sync
+```
  
 
 

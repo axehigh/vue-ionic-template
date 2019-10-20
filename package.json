@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "romantic",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "@capacitor/core": "^1.2.1",
     "@capacitor/ios": "^1.2.1",
     "@ionic/vue": "0.0.4",
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "ionic": "^5.2.6",
     "vue": "^2.6.10",

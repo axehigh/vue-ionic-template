@@ -3,13 +3,13 @@
     <h3>{{formTitle}}</h3>
     <div>
       <ion-item>
-        <ion-label>First Name</ion-label>
-        <ion-input @input="userData.firstName = $event.target.value" :value="userData.firstName"></ion-input>
+        <ion-label>Tips</ion-label>
+        <ion-input @input="textData.text = $event.target.value" :value="textData.text"></ion-input>
       </ion-item>
-      <ion-item>
+      <!--<ion-item>
         <ion-label>Last Name</ion-label>
-        <ion-input @input="userData.lastName = $event.target.value" :value="userData.lastName"></ion-input>
-      </ion-item>
+        <ion-input @input="textData.lastName = $event.target.value" :value="textData.lastName"></ion-input>
+      </ion-item>-->
       <ion-button @click="handleBtnClicked()">Save</ion-button>
       <ion-button  color="danger" @click="handleCancelClicked()">Cancel</ion-button>
     </div>
@@ -30,8 +30,8 @@ export default {
      */
     formTitle: function() {
       return this.initialFormData.id !== undefined
-        ? "Editing User: " + this.initialFormData.id
-        : "Create New User";
+        ? "Editing tips: " + this.initialFormData.id
+        : "Add a new tips";
     }
   },
   watch: {
@@ -43,8 +43,8 @@ export default {
     initialFormData: function(_initialData) {
       // if we have a name field then set the form to
       // be able to edit the name
-      if (_initialData.name) {
-        this.userData = { ..._initialData.name };
+      if (_initialData.text) {
+        this.textData = { ..._initialData.text };
       }
     }
   },
@@ -52,41 +52,41 @@ export default {
     return {
       // here we are using the initialFormData to set the v-model data
       // that will be used in the component
-      userData: {}
+      textData: ""
     };
   },
   methods: {
     /**
      * this will emit an "form-clicked" event to the parent with the
-     * value from the userData property
+     * value from the textData property
      *
-     * the userData will only contain the firstName and LastName
+     * the textData will only contain the firstName and LastName
      */
     handleBtnClicked: function() {
       var returnVal = {};
       if (this.initialFormData.id !== undefined) {
         returnVal = {
           id: this.initialFormData.id,
-          name: this.userData
+          text: this.textData
         };
       } else {
-        returnVal = this.userData;
+        returnVal = this.textData;
       }
 
       this.$emit("form-clicked", returnVal);
       // clear the ui
-      this.userData = {};
+      this.textData = {};
     },
     /**
      * this will emit an "form-cancelled" event to the parent with the
-     * value from the userData property
+     * value from the textData property
      *
-     * the userData will be empty
+     * the textData will be empty
      */
     handleCancelClicked: function() {
       this.$emit("form-cancelled", {});
       // clear the ui
-      this.userData = {};
+      this.textData = {};
     }
   },
   created() {}

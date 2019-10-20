@@ -1,11 +1,10 @@
 <template>
   <div class="list-container">
-    <h3>Show List Of Users</h3>
+    <h3>Show List Of Romantic tips</h3>
     <ion-list>
       <ion-item v-for="listItem in this.incomingListData" :key="listItem.id">
         <ion-label
-          @click="handleItemClicked(listItem)"
-        >{{ listItem.name.firstName }} {{ listItem.name.lastName }}</ion-label>
+          @click="handleItemClicked(listItem)">{{ listItem.text }}</ion-label>
         <ion-button @click="handleDeleteItemClicked(listItem)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-button>
@@ -46,6 +45,7 @@ export default {
      *
      */
     handleEditItemClicked: function(_listItem) {
+      console.info(_listItem.text);
       this.$emit("edit-item", _listItem);
     }
   }
