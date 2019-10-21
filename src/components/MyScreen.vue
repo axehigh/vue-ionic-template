@@ -12,11 +12,11 @@
                 {{this.listItem.text}}
             </ion-card-content>
         </ion-card>
-        <ion-buttons>
-            <button ion-button icon-only (click)="getRandomItem()">
-                <ion-icon name="search"></ion-icon>
-            </button>
-        </ion-buttons>
+<!--        <ion-buttons>-->
+<!--            <button ion-button icon-only @click="getRandomItem()">-->
+<!--                <ion-icon name="more"></ion-icon>-->
+<!--            </button>-->
+<!--        </ion-buttons>-->
     </div>
 </template>
 <script>
@@ -25,29 +25,34 @@
         props: {
             // this is the list data to render
             incomingListData: Array,
-
+             // listItem: {id: '1', text: 'some tips'}
         },
-        data: function () {
+        data() {
             return {
-                listItem: {id: 1, text: 'some tips'}
-            };
+                listItem: {id: '1', text: 'Laster inn noe smart ...'}
+            }
         },
-        mounted() {
-            this.getRandomItem();
+
+        watch: {
+            // whenever question changes, this function will run
+            incomingListData: function () {
+                let randomItem = this.getRandomItem();
+                this.listItem = randomItem;
+
+            }
         },
+
         methods: {
 
             getRandomItem: function () {
                 let index = this.getRandomImageIndex(this.incomingListData.length);
                 let listElement = this.incomingListData[index];
-                console.log("Item: " + JSON.stringify(listElement));
-                this.listItem = listElement;
+                return listElement;
             }
             ,
 
             getRandomImageIndex: function (_length) {
                 let number = Math.floor(Math.random() * _length);
-                console.log("index:" + number);
                 return number;
             }
         }
