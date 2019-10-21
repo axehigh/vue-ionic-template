@@ -3,37 +3,34 @@
         <ion-app>
             <ion-header>
                 <ion-toolbar color="primary">
-                    <ion-title>Romantic tips</ion-title>
+                    <ion-title>Romantisk tips</ion-title>
                 </ion-toolbar>
             </ion-header>
-            <ion-content padding>
-                <ion-card padding>
-                    <MyName name="Aaron" @was-clicked="handleWasClicked"></MyName>
-                </ion-card>
-                <ion-card padding>
-                    <my-list
-                            :incomingListData="theTextArray"
-                            @list-clicked="handleListClicked"
-                            @delete-item="handleDeleteListItem"
-                            @edit-item="handleEditListItem"
-                    ></my-list>
-                </ion-card>
-                <ion-card padding>
-                    <template v-if="inEditMode">
-                        <my-form
-                                :initialFormData="editingText"
-                                @form-clicked="handleFormEdit"
-                                @form-cancelled="handleFormCancelled"
-                        ></my-form>
-                    </template>
-                    <template v-else>
-                        <my-form
-                                :initialFormData="{}"
-                                @form-clicked="handleFormClicked"
-                                @form-cancelled="handleFormCancelled"
-                        ></my-form>
-                    </template>
-                </ion-card>
+            <ion-content padding >
+
+                <my-screen
+                        :incomingListData="theTextArray"
+                        @list-clicked="handleListClicked"
+                        @delete-item="handleDeleteListItem"
+                        @edit-item="handleEditListItem"
+                ></my-screen>
+
+                <!--                <ion-card padding v-show="false">-->
+                <!--                    <template v-if="inEditMode">-->
+                <!--                        <my-form-->
+                <!--                                :initialFormData="editingText"-->
+                <!--                                @form-clicked="handleFormEdit"-->
+                <!--                                @form-cancelled="handleFormCancelled"-->
+                <!--                        ></my-form>-->
+                <!--                    </template>-->
+                <!--                    <template v-else>-->
+                <!--                        <my-form-->
+                <!--                                :initialFormData="{}"-->
+                <!--                                @form-clicked="handleFormClicked"-->
+                <!--                                @form-cancelled="handleFormCancelled"-->
+                <!--                        ></my-form>-->
+                <!--                    </template>-->
+                <!--                </ion-card>-->
             </ion-content>
         </ion-app>
     </div>
@@ -47,6 +44,7 @@
      */
     import MyText from "./components/MyText.vue";
     import MyList from "./components/MyList.vue";
+    import MyScreen from "./components/MyScreen.vue";
     import MyForm from "./components/MyForm.vue";
     import axios from 'axios';
 
@@ -58,7 +56,8 @@
          */
         components: {
             MyName: MyText,
-            MyList,
+            // MyList,
+            MyScreen,
             MyForm
         },
         computed: {
@@ -74,7 +73,7 @@
                     console.info("Received data from endpoint");
                     // JSON responses are automatically parsed.
                     this.theTextArray = response.data;
-                    console.info("Data:" + JSON.stringify(this.theTextArray));
+                    console.info("Data items:" + JSON.stringify(this.theTextArray.length));
                 })
                 .catch(e => {
                     console.error("Failed to get data" + e);
@@ -96,7 +95,7 @@
         },
         methods: {
             handleWasClicked: function (_data) {
-               console.info(_data);
+                console.info(_data);
                 //alert(_data);
             },
             /**
@@ -107,7 +106,7 @@
              * it is id, name.irstName and the name.lastName
              */
             handleListClicked: function (_data) {
-               console.info(_data.text);
+                console.info(_data.text);
 //                alert(_data.text);
             },
             /**
@@ -185,4 +184,11 @@
         margin-top: 60px;
         padding: 30px;
     }
+
+
+    .containscreen {
+        background-size: contain;
+        background-color: aqua;
+    }
+
 </style>

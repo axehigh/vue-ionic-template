@@ -9,7 +9,7 @@
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-button>
         <ion-button @click="handleEditItemClicked(listItem)">
-          <ion-icon slot="icon-only" name="create"></ion-icon>
+          <ion-icon slot="icon-onlmy" name="create"></ion-icon>
         </ion-button>
       </ion-item>
     </ion-list>
