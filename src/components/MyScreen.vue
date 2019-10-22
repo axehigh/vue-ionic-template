@@ -1,7 +1,6 @@
 <template>
     <div>
 
-
         <ion-card>
             <img src="https://source.unsplash.com/800x600/?romantic"/>
             <ion-card-header>
@@ -12,11 +11,11 @@
                 {{this.listItem.text}}
             </ion-card-content>
         </ion-card>
-<!--        <ion-buttons>-->
-<!--            <button ion-button icon-only @click="getRandomItem()">-->
-<!--                <ion-icon name="more"></ion-icon>-->
-<!--            </button>-->
-<!--        </ion-buttons>-->
+        <button ion-button @click="setRandomItem()">
+            <ion-icon name="heart"></ion-icon>
+            Next
+        </button>
+
     </div>
 </template>
 <script>
@@ -25,7 +24,7 @@
         props: {
             // this is the list data to render
             incomingListData: Array,
-             // listItem: {id: '1', text: 'some tips'}
+            // listItem: {id: '1', text: 'some tips'}
         },
         data() {
             return {
@@ -45,9 +44,14 @@
         methods: {
 
             getRandomItem: function () {
+                console.log("Random it");
                 let index = this.getRandomImageIndex(this.incomingListData.length);
                 let listElement = this.incomingListData[index];
                 return listElement;
+            },
+            setRandomItem: function () {
+                let randomItem = this.getRandomItem();
+                this.listItem = randomItem;
             }
             ,
 

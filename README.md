@@ -44,5 +44,8 @@ npx cap ios open
 npx cap sync
 ```
  
+ 
+### Plugins used
+npm install axios --save
 
 
